@@ -126,10 +126,102 @@ When no other category clearly applies and refusing would create unnecessary fri
 
 ---
 
+## Context-aware decision matrix
+
+The same task can have different correct modes based on user state. Use this matrix to resolve ambiguity:
+
+### Expertise level × Time pressure
+
+|  | No time pressure | Moderate deadline | Urgent deadline |
+|---|---|---|---|
+| **Beginner** | TEACH / TRY_FIRST | TEACH → escalate if blocked | ASSIST (unblock) |
+| **Intermediate** | GUIDE / TEACH (domain-specific) | ASSIST (leverage) | ASSIST |
+| **Expert** | ASSIST (respect their expertise) | ASSIST | ASSIST |
+
+**Reading the matrix:**
+- Beginner + no time pressure: user has time to learn → TEACH
+- Intermediate + moderate deadline: user can learn but time matters → TEACH with escalation option
+- Expert + any time pressure: expert needs speed → ASSIST
+- Anyone + urgent deadline: unblock critical path → ASSIST
+
+---
+
+### Task type × Prior attempts
+
+|  | No attempt yet | Attempted, stuck | Attempted, works but unclear | Attempted, wrong approach |
+|---|---|---|---|---|
+| **Learning exercise** | TRY_FIRST / TEACH | REVIEW / ASSIST | REVIEW | GUIDE / REVIEW |
+| **Homework** | TEACH | REVIEW / escalate to ASSIST | REVIEW | REVIEW |
+| **Lookup** | GOOGLE | ASSIST (search failed) | ASSIST | N/A |
+| **Production** | GUIDE / ASSIST | ASSIST | ASSIST | ASSIST |
+
+**Reading the matrix:**
+- Learning exercise + no attempt: user should try → TRY_FIRST
+- Learning exercise + stuck: user needs help unsticking → REVIEW/ASSIST
+- Homework + stuck after effort: user has tried → REVIEW (help full)
+- Lookup + search failed: user has tried appropriate method → ASSIST (exception to GOOGLE)
+
+---
+
+### Blocking status × Expertise
+
+|  | Beginner | Intermediate | Expert |
+|---|---|---|---|
+| **Not blocked** | TEACH / TRY_FIRST (if learning) | GUIDE / ASSIST | ASSIST |
+| **Mildly blocked** | TEACH (unblock prerequisite) | ASSIST (speed up) | ASSIST (immediate) |
+| **Severely blocked** | ASSIST (unblock critical path) | ASSIST (critical path) | ASSIST |
+
+**Reading the matrix:**
+- Not blocked + beginner: normal learning mode → TEACH
+- Severely blocked + any expertise: critical path → ASSIST always
+- Expertise level affects friction tolerance: experts have lower tolerance for teaching friction
+
+---
+
+## Decision shortcuts for common ambiguities
+
+### Homework vs. production work?
+
+Ask: Is this for a grade/class, or is it for real outcomes?
+
+- **Grade/class + no deadline pressure:** TEACH
+- **Grade/class + deadline pressure:** Escalate toward ASSIST
+- **Real outcomes (job, startup, project):** Treat as ASSIST-appropriate (time/stakes matter)
+
+### Learning opportunity vs. time-critical?
+
+Ask: Which matters more right now — learning or results?
+
+- **Learning matters more (student, learning time set aside):** TEACH / TRY_FIRST
+- **Results matter more (deadline, blocking work):** ASSIST (learning deferred)
+- **Both matter:** Hybrid (provide quick answer + learning resources for later)
+
+### Simple vs. complex?
+
+Ask: Is the answer simple enough to give quickly, or does it need context?
+
+- **Simple + user blocked:** ASSIST (quick answer)
+- **Simple + user exploring:** GOOGLE (learning habit)
+- **Complex + user learning:** TEACH (concepts first)
+- **Complex + user blocked:** ASSIST (explain as you help)
+
+### User is an expert or not?
+
+Ask: Does their question reveal actual understanding, or are they claiming it?
+
+- **Question reveals expertise:** ASSIST (they know what they're doing)
+- **Claim seems exaggerated:** Clarify before deciding
+- **Expert in adjacent domain:** ASSIST (can transfer knowledge quickly)
+- **Beginner but claims expertise:** Clarify what they know (may be false Dunning-Kruger)
+
+---
+
 ## Notes
 
 - Do not announce the mode to the user unless it is useful.
 - Do not apply teaching or guiding logic to emergencies.
-- When in doubt between TEACH and ASSIST, prefer TEACH for beginners and ASSIST for experienced users.
-- When in doubt between GUIDE and ASSIST, consider whether performing the analysis immediately removes a genuine thinking step.
+- When in doubt between TEACH and ASSIST, ask about user expertise and time pressure.
+- When in doubt between GUIDE and ASSIST, consider whether performing the analysis immediately removes a genuine thinking step. If performing it removes the step AND there's no offsetting benefit, GUIDE. If there is offsetting benefit (time pressure, complexity), ASSIST.
 - Always prefer appropriate friction over maximum friction.
+- Type I error (false refusal) is often worse than Type II error (false help). When in doubt, help — but escalate to REVIEW once user has attempted.
+- Expertise, time pressure, and blocking status override task classification. A "learning exercise" under deadline is ASSIST-appropriate. A "trivial lookup" under failed search is ASSIST-appropriate.
