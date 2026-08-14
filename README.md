@@ -147,27 +147,61 @@ When in doubt about whether a situation is urgent, treat it as urgent.
 
 ---
 
-## How to install / use the skill
+## Installation
 
-ThinkFirst is a prompt-based behavioral specification. It is model-agnostic.
+**⚠️ Important:** `SKILL.md` is the only file you need to run ThinkFirst. You do not need to clone this entire repository to use the skill.
 
-### Option 1: System prompt injection
+### Quickest start: Copy and use SKILL.md
 
-Copy the contents of `SKILL.md` into your AI assistant's system prompt.
+1. Download [`SKILL.md`](SKILL.md) from this repository.
+2. Copy its contents into your AI system's instruction/prompt interface.
+3. Enable ThinkFirst in your next conversation.
 
-Supported by: OpenAI ChatGPT (custom instructions or API), Anthropic Claude (system prompt), Google Gemini, any API-accessible model.
+This works with any AI system that accepts custom instructions or system prompts.
 
-### Option 2: Conversation prefix
+### Supported installation methods
 
-Paste the contents of `SKILL.md` at the start of a new conversation before your first request.
+| Method | Ease | Requirements | Where it works |
+|--------|------|--------------|-----------------|
+| **Manual SKILL.md** | ✅ Universal | Copy-paste | Any AI with custom instructions |
+| **System prompt** | ✅ Easy | API access | ChatGPT, Claude (API/enterprise), Gemini, Ollama, LM Studio |
+| **Custom GPT** | ✅ Easy | ChatGPT Plus | OpenAI ChatGPT (UI) |
+| **Claude Project** | ✅ Easy | Claude.ai account | Anthropic Claude (UI) |
+| **Conversation prefix** | ✅ Universal | Paste once | Any conversational AI |
 
-### Option 3: Custom GPT / Claude Project
+### Installation options by platform
 
-Create a Custom GPT or a Claude Project and use `SKILL.md` as the system behavior instruction.
+**OpenAI ChatGPT**
+- Custom instructions (ChatGPT UI): Paste `SKILL.md` in "Custom instructions" → "How should ChatGPT behave?" → Enable for all conversations
+- API: Use `SKILL.md` as system prompt in API calls
 
-### Option 4: Local model (Ollama, LM Studio, etc.)
+**Anthropic Claude**
+- Web UI: Start a new conversation, paste `SKILL.md` as the first message
+- Projects: Create a new project, add `SKILL.md` as the system prompt
+- API: Use `SKILL.md` as system prompt in API calls
 
-Use `SKILL.md` as the system prompt when starting a session.
+**Google Gemini**
+- Paste `SKILL.md` at the start of a new conversation
+
+**Local models (Ollama, LM Studio, vLLM, etc.)**
+- Use `SKILL.md` as the system prompt when starting a session
+
+**Other platforms**
+- Any AI system that accepts "custom instructions," "system prompts," or "initial context" can use ThinkFirst by pasting `SKILL.md`
+
+### For developers / contributors
+
+If you want to contribute, improve tests, or understand the modular architecture:
+
+```bash
+git clone https://github.com/saurabhgayali/ThinkFirst.git
+cd ThinkFirst
+```
+
+This gives you access to:
+- **rules/** — behavioral rule specifications (for documentation and contribution)
+- **examples/** — worked examples demonstrating correct behavior
+- **tests/** — test cases and regression tracking
 
 ---
 
@@ -179,26 +213,45 @@ Use `SKILL.md` as the system prompt when starting a session.
 4. Add or update tests in `tests/test_cases.md` if you change behavioral rules.
 5. Submit a pull request with a clear description.
 
+**Important:** If you change SKILL.md, ensure the changes remain backward compatible and do not break existing behavior. All runtime behavior must be completely self-contained in SKILL.md.
+
 Contributions welcome:
 
-* new examples in `examples/`
-* additional test cases in `tests/test_cases.md`
-* improvements to behavioral rules in `rules/`
-* translations of the skill specification
+* improvements to SKILL.md behavioral rules
+* new test cases in `tests/test_cases.md` (include adversarial cases)
+* clarifications or new rules in `rules/`
+* new worked examples in `examples/`
+* improvements to this documentation
 * implementations for specific platforms (custom GPTs, Claude Projects, etc.)
 
 ---
 
 ## Repository structure
 
-```text
+**For end users (just using ThinkFirst):**
+
+You only need:
+```
+SKILL.md — Complete, standalone behavioral specification
+```
+
+Copy this file into your AI system. That's all required for ThinkFirst to work.
+
+**For developers and contributors:**
+
+The full repository is organized as:
+
+```
 thinkfirst/
+│
+├── SKILL.md            — ⭐ THE COMPLETE SKILL (all runtime behavior)
+│                         Use this file to install/use ThinkFirst
+│
 ├── README.md           — This file
 ├── LICENSE             — MIT License
-├── SKILL.md            — Full behavioral specification (use as system prompt)
 ├── CHANGELOG.md        — Version history
 │
-├── rules/              — Individual behavioral rules
+├── rules/              — Supporting rule documentation (reference only)
 │   ├── decision.md     — Decision criteria and mode selection
 │   ├── google-first.md — Trivial search redirection rule
 │   ├── learning.md     — Teaching and attempt-first behavior
@@ -222,6 +275,10 @@ thinkfirst/
     ├── adversarial-cases.md — Cases where refusing help causes harm
     └── regression.md   — Regression tracking
 ```
+
+**Key principle:**
+
+> The `rules/`, `examples/`, and `tests/` directories are for documentation, testing, and contributor reference. They are not required at runtime. SKILL.md contains the complete behavioral specification.
 
 ---
 
@@ -251,7 +308,40 @@ The design goal is a user who, over time, becomes more capable — not merely mo
 
 ---
 
+## Portability and testing
+
+### Standalone SKILL.md test
+
+ThinkFirst is designed to be completely standalone. A release is considered valid only when:
+
+1. A user can download `SKILL.md` alone (without `rules/`, `examples/`, or `tests/`)
+2. Copy it into any supported AI system's instruction interface
+3. Obtain complete ThinkFirst behavior without accessing the repository
+
+**This is a mandatory requirement for every release.**
+
+### For maintainers
+
+Before releasing a new version:
+1. Read `SKILL.md` in isolation
+2. Verify it contains all behavioral rules needed for runtime decision-making
+3. Verify it does not reference `rules/`, `examples/`, or `tests/`
+4. Verify all runtime behavior is completely self-contained
+5. Test with a standalone copy: no repository access required
+
+### Verification checklist
+
+- [ ] SKILL.md is current and complete
+- [ ] No broken references to supporting files
+- [ ] All runtime behaviors documented in SKILL.md
+- [ ] Examples work when instructions are applied
+- [ ] Test cases pass with standalone SKILL.md
+- [ ] Installation instructions are verified and current
+
+---
+
+
+
 ## License
 
 MIT License. See `LICENSE`.
-
