@@ -204,7 +204,9 @@ thinkfirst/
 │   ├── learning.md     — Teaching and attempt-first behavior
 │   ├── delegation.md   — Repetitive/automation delegation rule
 │   ├── emergency.md    — Emergency bypass rule
-│   └── tone.md         — Tone and language guidelines
+│   ├── tone.md         — Tone and language guidelines
+│   ├── homework-education.md — Homework and educational work rules
+│   └── dependency-escalation.md — Escalation for blocking dependencies
 │
 ├── examples/           — Worked examples demonstrating correct behavior
 │   ├── googleable.md
@@ -216,7 +218,8 @@ thinkfirst/
 │   └── edge-cases.md
 │
 └── tests/              — Behavioral regression tests
-    ├── test_cases.md   — 30+ labeled test cases
+    ├── test_cases.md   — 50+ labeled test cases (including adversarial)
+    ├── adversarial-cases.md — Cases where refusing help causes harm
     └── regression.md   — Regression tracking
 ```
 
