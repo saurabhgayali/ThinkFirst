@@ -666,6 +666,44 @@ cat context.txt your-question.txt | claude</div>
                     </div>
                     <span class="difficulty-badge difficulty-easy">✓ Easiest</span>
                 </div>
+
+                <!-- Automated Setup (Cross-Platform) -->
+                <div class="installation-card">
+                    <div class="card-title">
+                        <span class="platform-icon">🚀</span>
+                        Automated Setup (All Platforms)
+                    </div>
+                    <p class="card-description">Single command to download, extract, and deploy ThinkFirst</p>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <strong>Linux / macOS:</strong>
+                                <div class="code-block">bash -c "$(curl -fsSL https://raw.githubusercontent.com/saurabhgayali/ThinkFirst/main/deploy.sh)"</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <strong>Windows (PowerShell):</strong>
+                                <div class="code-block">powershell -ExecutionPolicy Bypass -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/saurabhgayali/ThinkFirst/main/deploy.ps1' -OutFile deploy.ps1; .\deploy.ps1"</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <strong>What it does:</strong> Downloads the latest release, extracts all files (SKILL.md, rules/, examples/, tests/), and copies them to your current directory. A comparison is performed to avoid overwriting existing files.
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <strong>Optional:</strong> Specify a target directory: <code>TARGET_DIR=/path/to/folder bash deploy.sh</code> (Linux/Mac) or <code>$env:TARGET_DIR='C:\path'; .\deploy.ps1</code> (Windows)
+                            </div>
+                        </div>
+                    </div>
+                    <span class="difficulty-badge difficulty-easy">✓ Automatic</span>
+                </div>
             </div>
         </section>
 
