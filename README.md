@@ -1,342 +1,347 @@
 # ThinkFirst
 
-### AI that helps you become less dependent on AI.
-
-ThinkFirst is an AI skill designed to prevent **unnecessary cognitive outsourcing**.
-
-Most AI assistants are optimized for:
-
-> **Ask → Generate → Done**
-
-ThinkFirst asks one additional question:
-
-> **"Should I actually do this for you?"**
-
-Sometimes the answer is yes.
-
-Sometimes the better answer is:
-
-> **"Try it yourself first. I'll help when you get stuck."**
+> **ThinkFirst — AI that helps you become less dependent on AI.**
 
 ---
 
-## Why ThinkFirst?
+## What is ThinkFirst?
 
-AI can make almost everything easier.
+ThinkFirst is a portable AI behavioral skill specification. It changes how an AI assistant decides whether to help you — before it responds.
 
-That's incredibly useful — but it also creates a problem.
+Most AI assistants operate on the model:
 
-A student can ask AI to solve every homework problem.
-A beginner programmer can ask AI to write every program.
-Someone can ask AI to look up every trivial fact.
-A data analyst can ask AI to perform an analysis they could have learned to do themselves.
+> User asks → AI performs the task.
 
-The task gets completed.
+ThinkFirst introduces a prior decision:
 
-But the person doesn't necessarily become more capable.
+> **Should the AI actually perform this task, or would the user benefit more from doing it themselves?**
 
-ThinkFirst is built around a different principle:
+ThinkFirst is not anti-AI. It is pro-capability.
+
+---
+
+## Why it exists
+
+AI assistants are extraordinarily capable. That capability creates a new kind of risk: people progressively outsource cognitive work they could reasonably do themselves — and lose the ability to do it.
+
+Consider the difference between:
+
+* asking AI to solve every arithmetic problem you encounter, versus
+* asking AI to help you understand arithmetic so you can solve problems yourself.
+
+The first makes every individual problem easier. The second makes you more capable.
+
+ThinkFirst bets that over the long term, a user who has been taught, guided, and occasionally refused immediate help will outperform a user who was always instantly served.
 
 > **AI should increase capability, not merely decrease effort.**
 
 ---
 
-## What does ThinkFirst do?
+## The problem of cognitive outsourcing
 
-Before completing a request, ThinkFirst evaluates whether the task should actually be delegated to AI.
+Cognitive outsourcing is when a person delegates intellectual work to a tool — not because the tool is better suited to it, but because the tool makes it easy to avoid the effort.
 
-It considers:
+Examples:
 
-* Is this easily searchable?
-* Can the user reasonably do it themselves?
-* Is this a learning opportunity?
-* Does doing it develop a reusable skill?
-* Is the user outsourcing the actual thinking?
-* Is the task repetitive or merely tedious?
-* Has the user already attempted it?
-* Does AI provide meaningful leverage?
-* Is the situation urgent or safety-critical?
+* asking AI to write your essay instead of developing your writing ability
+* asking AI for the answer to a programming exercise instead of working through it
+* asking AI what conclusions to draw from data instead of learning to analyze
+* asking AI to explain every piece of code instead of reading documentation
 
-It then chooses an appropriate response.
+In each case, the immediate output may be correct. But the user loses the experience of doing the intellectual work — and the skill that experience would have built.
 
-### Google First
+ThinkFirst does not treat all AI assistance as cognitive outsourcing. It distinguishes between:
 
-For trivial, searchable questions:
-
-> **Try Googling:**
-> `"Windows 11 Task Manager keyboard shortcut"`
-
-This is a five-second lookup. You should practice finding information yourself.
-
-### Try First
-
-For small educational tasks:
-
-> **I'm deliberately not doing this one for you.**
-
-Build the first version yourself. If you get stuck, show me what you tried.
-
-### Guide
-
-For analytical or conceptual tasks:
-
-Instead of immediately analyzing everything, ThinkFirst can explain:
-
-* what to measure
-* which tests might be appropriate
-* which charts to use
-* how to interpret the results
-* what questions to ask
-
-The user performs the first analysis.
-
-### Review
-
-Once the user has attempted something, AI becomes a coach:
-
-> Show me what you tried.
-
-ThinkFirst can then identify mistakes, explain them, and provide increasingly specific help.
-
-### Delegate
-
-Not everything needs to be done manually.
-
-If the task is repetitive, tedious, or computationally expensive, ThinkFirst gets out of the way.
-
-For example:
-
-> Rename 10,000 files.
-
-**Automate it.**
-
-There is little cognitive value in making a human rename 10,000 files manually.
+| Type | Example | ThinkFirst behavior |
+|------|---------|---------------------|
+| Cognitive development | Writing a program for the first time | Teach and guide |
+| Mechanical/repetitive | Renaming 10,000 files | Automate |
+| Expert leverage | Processing 100GB of data | Help immediately |
+| Emergency | Locating a hospital | Help immediately |
+| Trivial lookup | Keyboard shortcut | Redirect to search |
 
 ---
 
-## The important distinction
+## The decision model
 
-ThinkFirst does **not** follow:
+For every request, ThinkFirst internally evaluates:
 
-> Easy task → refuse
-> Hard task → do
+1. Is this urgent or safety-critical? → **BYPASS**
+2. Is this a trivial searchable lookup? → **GOOGLE**
+3. Can the user reasonably do this themselves?
+   - Is it educational? Does it develop a reusable skill? → **TEACH** or **TRY_FIRST**
+   - Is the user outsourcing the actual thinking? → **GUIDE**
+4. Is this repetitive or mechanical? → **DELEGATE**
+5. Does AI provide substantial leverage without removing a learning opportunity? → **ASSIST**
+6. Has the user already made a genuine attempt? → **REVIEW**
 
-Instead:
+### Assistance modes
 
-> **Useful cognitive work → encourage the human to do it.**
-> **Mechanical/repetitive work → automate it.**
-
-For example:
-
-| Request                                    | ThinkFirst response |
-| ------------------------------------------ | ------------------- |
-| "What's the HTML tag for a line?"          | Google First        |
-| "Explain photosynthesis."                  | Teach               |
-| "Solve my entire math worksheet."          | Try First           |
-| "Check my math answers."                   | Review              |
-| "Analyze this dataset."                    | Guide first         |
-| "Convert 50,000 files."                    | Delegate            |
-| "Write my entire school essay."            | Guide / Try First   |
-| "Help me understand this difficult paper." | Assist              |
-| "Find the nearest emergency hospital."     | **Immediate help**  |
-
----
-
-# Built for learning
-
-ThinkFirst is particularly useful for **students and children**.
-
-A child shouldn't have to fight an AI to get help.
-
-Instead, the AI should transform:
-
-> "Do my homework."
-
-into:
-
-> "Let's work through it."
-
-For example:
-
-**Student:**
-
-> Write my essay about photosynthesis.
-
-**ThinkFirst:**
-
-> I can help you understand photosynthesis, plan your essay, and review what you write — but I'm not going to write your homework for you.
->
-> Start by telling me what you already know about photosynthesis. Even if you only know one thing.
-
-The objective isn't to punish the student.
-
-It is to make the AI a **tutor rather than a ghostwriter**.
+| Mode | When used |
+|------|-----------|
+| **BYPASS** | Emergency, safety, time-critical |
+| **GOOGLE** | Trivial searchable lookup |
+| **TRY_FIRST** | Small, achievable task the user should attempt |
+| **TEACH** | Concepts the user should learn |
+| **GUIDE** | Methodology, without doing the intellectual work |
+| **REVIEW** | User has attempted the task |
+| **DELEGATE** | Repetitive or computational work |
+| **ASSIST** | Genuine AI leverage; perform the task |
 
 ---
 
-# Emergency bypass
+## Examples
 
-Self-reliance should never come before safety.
+### Emergency — BYPASS
 
-ThinkFirst should immediately help with:
+> "I think I'm having a heart attack. What do I do?"
 
-* emergencies
-* urgent safety situations
-* finding local emergency services
-* urgent medical information
-* accessibility needs
-* genuinely time-critical situations
+→ Immediate help. No teaching, no redirection. Call emergency services now.
 
-It should never respond to an emergency with:
+### Trivial lookup — GOOGLE
 
-> "Have you tried Googling that?"
+> "What is the keyboard shortcut for Task Manager on Windows?"
 
-There are situations where **getting the answer quickly matters more than learning how to find it**.
+→ Try Googling `"Windows 11 Task Manager keyboard shortcut"`. This is a five-second lookup.
 
----
+### Beginner programming — TEACH / TRY_FIRST
 
-# Tone
+> "Write me a Python program that calculates projectile motion."
 
-ThinkFirst is intentionally **firm but not rude**.
+→ This is a good exercise. Here are the equations and concepts. Build the first version yourself. Show me what you write.
 
-It should behave more like a good parent or teacher than an abusive chatbot.
+### Data analysis — GUIDE
 
-### Good
+> "Analyze this dataset and tell me what conclusions I should draw."
 
-> "I'm not doing this one for you because I think you can do it yourself."
+→ Start with distributions and outliers. What question are you investigating? Try a pivot table and a few scatter plots first. Tell me what you observe.
 
-> "Try this first. If you get stuck, bring me your attempt."
+### Repetitive automation — DELEGATE
 
-> "You don't need AI for this one. Google it and see what you find."
+> "I need to rename 8,000 files by removing the date prefix."
 
-> "This is a good exercise for you. I'll help you debug it, but I'm not going to write the whole thing."
+→ Here's a Python script that does that in seconds. Running this manually would be pointless.
 
-### Bad
+### Expert user — ASSIST
 
-> "That's stupid."
+> "I know Python. Generate the Flask boilerplate for a REST API with JWT auth."
 
-> "You're lazy."
-
-> "Figure it out yourself."
-
-> "I refuse to help."
-
-ThinkFirst challenges the **behavior**, never the **person**.
+→ Immediate help. The user knows what they're doing.
 
 ---
 
-# AI effort vs. learning value
+## Emergency bypass
 
-For larger requests, ThinkFirst may explain the trade-off.
+ThinkFirst **never** applies teaching or redirection logic during emergencies.
 
-For example:
+Emergency conditions that trigger immediate unconditional help:
 
-> **AI effort:** High
-> **Estimated token usage:** ~10–30k tokens
-> **Learning effort:** ~2–4 hours
-> **Long-term learning value:** High
->
-> **Recommendation:** Build the first version yourself. I'll guide you and help debug it.
+* medical emergencies
+* finding emergency services or hospitals
+* immediate physical danger
+* urgent accessibility situations
+* crisis situations
+* time-critical decisions where delay causes harm
 
-Token numbers are estimates unless actual usage is available.
-
-ThinkFirst should never invent precise token consumption.
+When in doubt about whether a situation is urgent, treat it as urgent.
 
 ---
 
-# The core workflow
+## Installation
 
-```text
-                    USER REQUEST
-                         │
-                         ▼
-                 Safety / Emergency?
-                    │           │
-                   YES          NO
-                    │           │
-                  HELP          ▼
-                         Searchable lookup?
-                            │       │
-                           YES      NO
-                            │       │
-                         GOOGLE     ▼
-                              Learning opportunity?
-                                │       │
-                               YES      NO
-                                │       │
-                           TRY / TEACH  ▼
-                                  Repetitive work?
-                                    │       │
-                                   YES      NO
-                                    │       │
-                                DELEGATE   ASSIST
+**⚠️ Important:** `SKILL.md` is the only file you need to run ThinkFirst. You do not need to clone this entire repository to use the skill.
+
+### Quickest start: Copy and use SKILL.md
+
+1. Download [`SKILL.md`](SKILL.md) from this repository.
+2. Copy its contents into your AI system's instruction/prompt interface.
+3. Enable ThinkFirst in your next conversation.
+
+This works with any AI system that accepts custom instructions or system prompts.
+
+### Supported installation methods
+
+| Method | Ease | Requirements | Where it works |
+|--------|------|--------------|-----------------|
+| **Manual SKILL.md** | ✅ Universal | Copy-paste | Any AI with custom instructions |
+| **System prompt** | ✅ Easy | API access | ChatGPT, Claude (API/enterprise), Gemini, Ollama, LM Studio |
+| **Custom GPT** | ✅ Easy | ChatGPT Plus | OpenAI ChatGPT (UI) |
+| **Claude Project** | ✅ Easy | Claude.ai account | Anthropic Claude (UI) |
+| **Conversation prefix** | ✅ Universal | Paste once | Any conversational AI |
+
+### Installation options by platform
+
+**OpenAI ChatGPT**
+- Custom instructions (ChatGPT UI): Paste `SKILL.md` in "Custom instructions" → "How should ChatGPT behave?" → Enable for all conversations
+- API: Use `SKILL.md` as system prompt in API calls
+
+**Anthropic Claude**
+- Web UI: Start a new conversation, paste `SKILL.md` as the first message
+- Projects: Create a new project, add `SKILL.md` as the system prompt
+- API: Use `SKILL.md` as system prompt in API calls
+
+**Google Gemini**
+- Paste `SKILL.md` at the start of a new conversation
+
+**Local models (Ollama, LM Studio, vLLM, etc.)**
+- Use `SKILL.md` as the system prompt when starting a session
+
+**Other platforms**
+- Any AI system that accepts "custom instructions," "system prompts," or "initial context" can use ThinkFirst by pasting `SKILL.md`
+
+### For developers / contributors
+
+If you want to contribute, improve tests, or understand the modular architecture:
+
+```bash
+git clone https://github.com/saurabhgayali/ThinkFirst.git
+cd ThinkFirst
 ```
 
-The actual decision should also consider user expertise, previous attempts, urgency, and the value of the user's time.
+This gives you access to:
+- **rules/** — behavioral rule specifications (for documentation and contribution)
+- **examples/** — worked examples demonstrating correct behavior
+- **tests/** — test cases and regression tracking
 
 ---
 
-# Design principle
+## How to contribute
 
-ThinkFirst is not anti-AI.
+1. Fork the repository.
+2. Create a branch: `git checkout -b feature/your-change`
+3. Make your changes.
+4. Add or update tests in `tests/test_cases.md` if you change behavioral rules.
+5. Submit a pull request with a clear description.
 
-It is **anti-unnecessary dependency**.
+**Important:** If you change SKILL.md, ensure the changes remain backward compatible and do not break existing behavior. All runtime behavior must be completely self-contained in SKILL.md.
 
-The goal is not:
+Contributions welcome:
 
-> "Use AI less."
-
-The goal is:
-
-> **"Use AI where AI creates leverage, and use your own brain where using your own brain creates capability."**
-
----
-
-# Project status
-
-ThinkFirst is currently a **portable AI skill specification** rather than a standalone application.
-
-The repository contains:
-
-* behavioral rules
-* decision criteria
-* assistance modes
-* examples
-* edge cases
-* regression tests
-* tone guidelines
-
-The specification is designed to be adapted to different AI systems and eventually integrated into applications, educational environments, or parental-control tools.
+* improvements to SKILL.md behavioral rules
+* new test cases in `tests/test_cases.md` (include adversarial cases)
+* clarifications or new rules in `rules/`
+* new worked examples in `examples/`
+* improvements to this documentation
+* implementations for specific platforms (custom GPTs, Claude Projects, etc.)
 
 ---
 
-# Contributing
+## Repository structure
 
-Contributions should focus on improving the skill's judgment rather than simply increasing the number of refusals.
+**For end users (just using ThinkFirst):**
 
-Good contributions include:
+You only need:
+```
+SKILL.md — Complete, standalone behavioral specification
+```
 
-* better decision rules
-* new edge cases
-* improved educational responses
-* preventing unnecessary refusals
-* better emergency handling
-* better handling of expert users
-* tests for unwanted behavior
-* methods for measuring whether the skill actually reduces dependency
+Copy this file into your AI system. That's all required for ThinkFirst to work.
 
-The central question for every change is:
+**For developers and contributors:**
 
-> **Does this make the user more capable, or does it merely make the AI more restrictive?**
+The full repository is organized as:
 
-If it is the latter, reconsider the change.
+```
+thinkfirst/
+│
+├── SKILL.md            — ⭐ THE COMPLETE SKILL (all runtime behavior)
+│                         Use this file to install/use ThinkFirst
+│
+├── README.md           — This file
+├── LICENSE             — MIT License
+├── CHANGELOG.md        — Version history
+│
+├── rules/              — Supporting rule documentation (reference only)
+│   ├── decision.md     — Decision criteria and mode selection
+│   ├── google-first.md — Trivial search redirection rule
+│   ├── learning.md     — Teaching and attempt-first behavior
+│   ├── delegation.md   — Repetitive/automation delegation rule
+│   ├── emergency.md    — Emergency bypass rule
+│   ├── tone.md         — Tone and language guidelines
+│   ├── homework-education.md — Homework and educational work rules
+│   └── dependency-escalation.md — Escalation for blocking dependencies
+│
+├── examples/           — Worked examples demonstrating correct behavior
+│   ├── googleable.md
+│   ├── homework.md
+│   ├── coding.md
+│   ├── data-analysis.md
+│   ├── repetitive-work.md
+│   ├── emergencies.md
+│   └── edge-cases.md
+│
+└── tests/              — Behavioral regression tests
+    ├── test_cases.md   — 50+ labeled test cases (including adversarial)
+    ├── adversarial-cases.md — Cases where refusing help causes harm
+    └── regression.md   — Regression tracking
+```
+
+**Key principle:**
+
+> The `rules/`, `examples/`, and `tests/` directories are for documentation, testing, and contributor reference. They are not required at runtime. SKILL.md contains the complete behavioral specification.
 
 ---
 
-## Philosophy
+## Design philosophy
 
-> **A good AI doesn't just answer your question.**
->
-> **Sometimes it tells you that you should answer it yourself.**
+ThinkFirst is designed to behave like a capable mentor, not a vending machine.
 
-**ThinkFirst — AI that helps you become less dependent on AI.**
+A good mentor asks: **"Would doing this for you actually help you?"**
+
+A vending machine dispenses whatever you request.
+
+The difference is not about withholding help. It is about the quality of the help. A mentor who explains, guides, and occasionally challenges you produces better outcomes than one who does everything for you.
+
+ThinkFirst does not maximize refusal. It does not treat all AI assistance as harmful. It does not force users into unnecessary struggle.
+
+It optimizes for one thing: **appropriate friction**.
+
+Appropriate friction means:
+
+* asking a beginner programmer to attempt the exercise before providing the solution
+* redirecting a simple factual lookup to a search engine
+* suggesting the user form their own hypothesis before analyzing data
+* automating genuinely tedious work without hesitation
+* helping immediately when there is urgency or genuine leverage
+
+The design goal is a user who, over time, becomes more capable — not merely more efficiently served.
+
+---
+
+## Portability and testing
+
+### Standalone SKILL.md test
+
+ThinkFirst is designed to be completely standalone. A release is considered valid only when:
+
+1. A user can download `SKILL.md` alone (without `rules/`, `examples/`, or `tests/`)
+2. Copy it into any supported AI system's instruction interface
+3. Obtain complete ThinkFirst behavior without accessing the repository
+
+**This is a mandatory requirement for every release.**
+
+### For maintainers
+
+Before releasing a new version:
+1. Read `SKILL.md` in isolation
+2. Verify it contains all behavioral rules needed for runtime decision-making
+3. Verify it does not reference `rules/`, `examples/`, or `tests/`
+4. Verify all runtime behavior is completely self-contained
+5. Test with a standalone copy: no repository access required
+
+### Verification checklist
+
+- [ ] SKILL.md is current and complete
+- [ ] No broken references to supporting files
+- [ ] All runtime behaviors documented in SKILL.md
+- [ ] Examples work when instructions are applied
+- [ ] Test cases pass with standalone SKILL.md
+- [ ] Installation instructions are verified and current
+
+---
+
+
+
+## License
+
+MIT License. See `LICENSE`.
